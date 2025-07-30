@@ -205,9 +205,21 @@ Algemene voorwaarden: <br> <br><br><br>
       result.innerHTML = `Je had ${score}/10 goed! Maar dat maakt me niks uit, want ik hou sowieso van je💕`;
     }
 
-    // FormSubmit logic
     document.getElementById("hiddenScore").value = `Score: ${score}/3`;
-    document.getElementById("resultMailForm").submit();
+    fetch("https://formsubmit.co/ajax/exodus_nummers_1w@icloud.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            quiz_score: `Score: ${score}/3`
+        })
+})
+.then(response => response.json())
+.then(data => {
+  console.log("Mail verzonden ✅", data);
+})
+.catch(error => {
+  console.error("Fout bij mail verzenden ❌", error);
+});
   });
 
 // Activeer knop pas als checkbox is aangevinkt
