@@ -110,7 +110,7 @@
       <p>4. Met welke auto reed ik op het ijs in Oostenrijk?</p>
       <label><input type="radio" name="q4" value="a"> Audi Q5</label><br>
       <label><input type="radio" name="q4" value="b"> Audi Rs5 Sportback</label><br>
-      <label><input type="radio" name="q4" value="b"> Audi Rs6 Sporback</label><br>
+      <label><input type="radio" name="q4" value="c"> Audi Rs6 Sporback</label><br>
       <label><input type="radio" name="q4" value="d"> BMW I5 Coupé</label>
     </div><br>
 
@@ -171,6 +171,10 @@ Algemene voorwaarden: <br> <br><br><br>
     - Jij bent wel mijn favoriet, maar je bent geen sport. <br>
   </footer>
 
+<form id="resultMailForm" style="display: none;">
+  <input type="hidden" name="quiz_score" id="hiddenScore">
+</form>
+
 <script>
   document.getElementById('quiz-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -210,7 +214,7 @@ Algemene voorwaarden: <br> <br><br><br>
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            quiz_score: `Score: ${score}/3`
+            quiz_score: `Score: ${score}/10`
         })
 })
 .then(response => response.json())
@@ -234,7 +238,4 @@ agreeBox.addEventListener('change', () => {
 </body>
 </html>
 
-<form action="https://formsubmit.co/exodus_nummers_1w@icloud.com" method="POST" id="resultMailForm" style="display:none;">
-  <input type="hidden" name="quiz_score" id="hiddenScore">
-</form>
 
