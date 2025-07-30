@@ -90,6 +90,27 @@
   background-color: #e60000;
 }
 
+.fancy-checkbox {
+      display: inline-block;
+      background-color: #ff4d4d;
+      color: white;
+      padding: 1em 2em;
+      border-radius: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      user-select: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .fancy-checkbox:hover {
+      background-color: #e60000;
+    }
+
+    .fancy-checkbox.checked {
+      background-color: #00cc66 !important; /* Groen als aangeklikt */
+      animation: none;
+    }
 
   </style>
 </head>
@@ -110,17 +131,18 @@
     P.s. dit heeft wel een paar leuke foto's verdiend toch? Nog lekkerder ding💌 <br>
     P.s.s. Tijd voor een quizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Zie hieronder <br> 
     <button id="showQuizBtn">👉 Naar de quizzzzzzzzzzzzzzzzz!</button> <br>
-
+  </footer>
 <div id="quiz">
   <h2>💕 Very amazing quiz</h2>
   <form id="quiz-form">
 
-<div style="margin-top: 1em;">
-  <label>
-    <input type="checkbox" id="agreeBox">
-    Ik ga akkoord met de algemene voorwaarden van deze quiz💘
+<div style="margin-top: 2em;">
+  <label class="fancy-checkbox">
+    <input type="checkbox" id="agreeBox" style="display:none;">
+    ✅ Ik ga akkoord met de algemene voorwaarden 💘
   </label>
 </div>
+
 
     <div>
       <p>1. Wat is mijn favoriete sport?</p>
@@ -210,13 +232,28 @@
   - Deelnemer ontleent het recht om te klagen over de antwoorden.<br>
   - Jij bent wel mijn favoriet, maar je bent geen sport. 💋<br>
 </div>
-  </footer>
+
 
 <form id="resultMailForm" style="display: none;">
   <input type="hidden" name="quiz_score" id="hiddenScore">
 </form>
 
 <script>
+
+// Activeer knop pas als checkbox is aangevinkt
+const agreeBox = document.getElementById('agreeBox');
+const submitBtn = document.getElementById('submitBtn');
+
+agreeBox.addEventListener('change', () => {
+  submitBtn.disabled = !agreeBox.checked;
+  const label = document.querySelector('.fancy-checkbox');
+  if (agreeBox.checked) {
+    label.classList.add('checked');
+  } else {
+    label.classList.remove('checked');
+  }
+});
+
   document.getElementById('quiz-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -267,13 +304,7 @@
 });
   });
 
-// Activeer knop pas als checkbox is aangevinkt
-const agreeBox = document.getElementById('agreeBox');
-const submitBtn = document.getElementById('submitBtn');
 
-agreeBox.addEventListener('change', () => {
-  submitBtn.disabled = !agreeBox.checked;
-});
 
 
 document.getElementById("showQuizBtn").addEventListener("click", function() {
