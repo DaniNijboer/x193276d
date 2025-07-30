@@ -53,6 +53,11 @@
       font-size: 0.9em;
       color: #a44;
     }
+
+    #quiz, #voorwaarden{
+        display: none;
+    }
+
   </style>
 </head>
 <body>
@@ -70,7 +75,8 @@
   </div>
   <footer>
     P.s. dit heeft wel een paar leuke foto's verdiend toch? Nog lekkerder ding💌 <br>
-    P.s.s. Tijd voor een quizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Zie hieronder 
+    P.s.s. Tijd voor een quizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Zie hieronder <br> 
+    <button id="showQuizBtn">👉 Naar de quizzzzzzzzzzzzzzzzz!</button> <br>
 
 <div id="quiz">
   <h2>💕 Very amazing quiz</h2>
@@ -162,13 +168,15 @@
   <div id="result" style="margin-top: 1em; font-weight: bold;"></div>
 </div>
 
-Algemene voorwaarden: <br> <br><br><br>
-    - Elk fout antwoord verplicht de deelnemer om een spicy foto te versturen naar de eigenaar.<br>
-    - Niet voldoen aan bovenstaande, kan leiden tot een verhoging van het aantal foto's, te sturen door de deelnemer, gedurende de gehele vakantie. <br>
-    - Deelnemer verliest het recht om in enig hoger beroep te gaan. <br>
-    - Bij teleurstellen van de quizhost, is de deelnemer verplicht om elke dag, met de duur van 3 weken een foto te sturen. <br>
-    - Deelnemer ontleent het recht om te klagen over de antwoorden. <br>
-    - Jij bent wel mijn favoriet, maar je bent geen sport. <br>
+<div id="voorwaarden" style="margin-top: 3em;">
+  <strong>Algemene voorwaarden:</strong><br><br><br><br>
+  - Elk fout antwoord verplicht de deelnemer om een spicy foto te versturen naar de eigenaar.<br>
+  - Niet voldoen aan bovenstaande, kan leiden tot een verhoging van het aantal foto's, te sturen door de deelnemer, gedurende de gehele vakantie.<br>
+  - Deelnemer verliest het recht om in enig hoger beroep te gaan.<br>
+  - Bij teleurstellen van de quizhost, is de deelnemer verplicht om elke dag, met de duur van 3 weken een foto te sturen.<br>
+  - Deelnemer ontleent het recht om te klagen over de antwoorden.<br>
+  - Jij bent wel mijn favoriet, maar je bent geen sport. 💋<br>
+</div>
   </footer>
 
 <form id="resultMailForm" style="display: none;">
@@ -204,12 +212,12 @@ Algemene voorwaarden: <br> <br><br><br>
 
     const result = document.getElementById('result');
     if (score === 10) {
-      result.innerHTML = `🎉 Perfect! Jij kent mij door en door. Ik hou van jou 💖`;
+      result.innerHTML = `🎉 Perfect! Alles goed, potverdorie 💖`;
     } else {
       result.innerHTML = `Je had ${score}/10 goed! Maar dat maakt me niks uit, want ik hou sowieso van je💕`;
     }
 
-    document.getElementById("hiddenScore").value = `Score: ${score}/3`;
+    document.getElementById("hiddenScore").value = `Score: ${score}/10`;
     fetch("https://formsubmit.co/ajax/exodus_nummers_1w@icloud.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -233,6 +241,16 @@ const submitBtn = document.getElementById('submitBtn');
 agreeBox.addEventListener('change', () => {
   submitBtn.disabled = !agreeBox.checked;
 });
+
+
+document.getElementById("showQuizBtn").addEventListener("click", function() {
+  document.getElementById("quiz").style.display = "block";
+  document.getElementById("voorwaarden").style.display = "block";
+  this.style.display = "none"; // verstop de knop zelf
+
+  document.getElementById("quiz").scrollIntoView({ behavior: "smooth" });
+});
+
 </script>
 
 </body>
